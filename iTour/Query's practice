@@ -1,0 +1,32 @@
+/* We have Querys to sort results and to filter the results. The sorting part goes inside the @Query macro, and the filtering goes after, with predicates. We are going to practice a lot of both */
+
+/* Simple sorting querys: @Query(sort: \ClassModel.attribute, order: .reverse) var objectsByAttribute: [ClassModel] */
+
+// Query for consulting all the destinations ordered alfabetically by name.
+@Query(sort: \Destination.name) var destinationsByName: [Destination]
+
+// Query for consulting all the destinations ordered from the highest to the lowest priority (reversed).
+@Query(sort: \Destination.priority, order: .reverse) var destinationsByPriorityR: [Destinations]
+
+// Query for list destinations by date, from the most recent to the oldest.
+@Query(sort: \Destionation.date) var destinationsByDate: [Destination]
+
+// Query to sort destinations alphabetically by their details in descending order.
+@Query(sort: \Destination.details, order: .reverse) var destinationsByDetailsR: [Destination]
+
+
+/* Multiple sorting querys: @Query(sort: [SortDescriptor(\CM.attribute1), SortDescriptor(\CM.attribute2, order: .reverse)]) var objectsByAttribute1Attribute2R: [CM] */
+
+// Query to sort by priority descending then name ascending.
+@Query(sort: [SortDescriptor(\Destination.priority, order: .reverse), SortDescriptor(\Destination.name)]) var destinationsByPriorityRName: [Destination]
+
+// Query to sort destinations first by date (newest first) and then by name alphabetically (A to Z).
+@Query(sort: [SortDescriptor(\Destination.date, order: .reverse), SortDescriptor(\Destination.name)]) var destinationsByDateRName: [Destination]
+
+// Query to sort destinations first by priority (highest priority first) and then by date (oldest first).
+@Query(sort: [SortDescriptor(\Destination.priority, order: .reverse), SortDescriptor(\Destination.name, order: .forward)]) var destionationsByPriorityRDate: [Destination]
+
+// Query to sort destinations first by name alphabetically in reverse (Z to A) and then by priority in ascending order (lowest to highest).
+@Query(sort: [SortDescriptor(\Destination.name, order: .reverse), SortDescriptor(\Destination.priority)]) var destinationsByNameRPriority: [Destination]
+
+

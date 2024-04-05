@@ -8,56 +8,40 @@
 import SwiftData
 import SwiftUI
 
-/// In this View we work with the "path" of the NavigationStack dinamically, by sending a new destination to the path, we control programatically what's showing in our stack.
+/// In this View we work with the "path" of the NavigationStack dinamically, by sending a new destination to the path, we control programatically what's showing in our stack. Selections within the List (via NavigationLink) or programmatic updates to path (such as in addDestination()) lead to navigation changes. Specifically, when a Destination is added to path, the app navigates to EditDestinationView with that destination.
 struct ContentView: View {
     
     @Environment(\.modelContext) var modelContext
     
-    @Query var destinations: [Destination]
+    @Query(sort: [SortDescriptor(\Destination.name, order: .reverse), SortDescriptor(\Destination.priority)]) var destinationsByNameRPriority: [Destination]
     
     // Variable that controls the path of the NavigationStack
-    @State private var path = [Destination]()
+    @State private var path = [Destination]() // It's an empty array at the beginning.
+    
+    // Variable que almacena el orden elegido por el usuario, que contiene un valor sensato por default.
+    @State private var sortOrder = SortDescriptor(\Destination.name)
     
     var body: some View {
         NavigationStack(path: $path) {
-            List {
-                ForEach(destinations) { destination in
-                    NavigationLink(value: destination) {
-                        VStack(alignment: .leading) {
-                            Text(destination.name)
-                                .font(.headline)
-                            Text(destination.date.formatted(date: .long, time: .shortened))
-                        }
-                    }
-                }
-                .onDelete(perform: deleteDestinations)
-            }
+            DestinationListingView(sort: sortOrder) // We send the sortOrder chosen by the user to build the View.
             .navigationTitle("iTour")
             .navigationDestination(for: Destination.self, destination: EditDestinationView.init)
             .toolbar {
-                // Button("Add samples", action: addSamples)
                 Button("Add", systemImage: "plus", action: addDestination)
+                Menu("Sort", systemImage: "arrow.up.arrow.down") {
+                    Picker("Sort", selection: $sortOrder) {
+                        Text("Name")
+                            .tag(SortDescriptor(\Destination.name))
+                        Text("Priority")
+                            .tag(SortDescriptor(\Destination.priority, order: .reverse))
+                        Text("Date")
+                            .tag(SortDescriptor(\Destination.date))
+                    }
+                    .pickerStyle(.inline)
+                }
             }
         }
         
-    }
-    
-    func addSamples() {
-        // We created the Destination objects
-        let rome = Destination(name: "Rome")
-        let florence = Destination(name: "Florence")
-        let naples = Destination(name: "Naples")
-        // But we have to add them to the store
-        modelContext.insert(rome)
-        modelContext.insert(florence)
-        modelContext.insert(naples)
-    }
-    
-    func deleteDestinations(_ indexSet: IndexSet) {
-        for index in indexSet {
-            let destination = destinations[index]
-            modelContext.delete(destination)
-        }
     }
     
     func addDestination() {
@@ -72,3 +56,23 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
+
+/* Código de referencia:
+ 
+ /* En el toolbar:
+    // Button("Add samples", action: addSamples) */
+ 
+ // Función temporal para mostrar ejemplos en nuestra app.
+ func addSamples() {
+     // We created the Destination objects
+     let rome = Destination(name: "Rome")
+     let florence = Destination(name: "Florence")
+     let naples = Destination(name: "Naples")
+     // But we have to add them to the store
+     modelContext.insert(rome)
+     modelContext.insert(florence)
+     modelContext.insert(naples)
+ }
+ 
+ */
