@@ -16,6 +16,9 @@
 		B3E523322BC0656500DAD568 /* Query's practice in Resources */ = {isa = PBXBuildFile; fileRef = B3E523312BC0656500DAD568 /* Query's practice */; };
 		B3E523342BC0990500DAD568 /* DestinationListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E523332BC0990500DAD568 /* DestinationListingView.swift */; };
 		B3E523362BC0D42E00DAD568 /* Sight.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E523352BC0D42E00DAD568 /* Sight.swift */; };
+		B3E523392BC1532D00DAD568 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3E523372BC1532D00DAD568 /* Localizable.strings */; };
+		B3E523422BC1586400DAD568 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3E523402BC1586400DAD568 /* Localizable.strings */; };
+		B3E523472BC165B300DAD568 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = B3E523462BC165B300DAD568 /* Keys.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +32,10 @@
 		B3E523312BC0656500DAD568 /* Query's practice */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Query's practice"; sourceTree = "<group>"; };
 		B3E523332BC0990500DAD568 /* DestinationListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationListingView.swift; sourceTree = "<group>"; };
 		B3E523352BC0D42E00DAD568 /* Sight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sight.swift; sourceTree = "<group>"; };
+		B3E523382BC1532D00DAD568 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B3E523412BC1586400DAD568 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		B3E523452BC165B300DAD568 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Keys.plist; sourceTree = "<group>"; };
+		B3E523482BC165BF00DAD568 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "es-419"; path = "es-419.lproj/Keys.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +74,10 @@
 				B3E523332BC0990500DAD568 /* DestinationListingView.swift */,
 				B3E523212BBEFA8900DAD568 /* ContentView.swift */,
 				B3E5232F2BBF2B5D00DAD568 /* EditDestinationView.swift */,
+				B3E523372BC1532D00DAD568 /* Localizable.strings */,
+				B3E523402BC1586400DAD568 /* Localizable.strings */,
 				B3E523312BC0656500DAD568 /* Query's practice */,
+				B3E523462BC165B300DAD568 /* Keys.plist */,
 				B3E523232BBEFA8A00DAD568 /* Assets.xcassets */,
 				B3E523252BBEFA8A00DAD568 /* Preview Content */,
 			);
@@ -123,7 +133,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
+				"es-419",
 			);
 			mainGroup = B3E523132BBEFA8900DAD568;
 			productRefGroup = B3E5231D2BBEFA8900DAD568 /* Products */;
@@ -140,9 +150,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3E523472BC165B300DAD568 /* Keys.plist in Resources */,
 				B3E523322BC0656500DAD568 /* Query's practice in Resources */,
 				B3E523272BBEFA8A00DAD568 /* Preview Assets.xcassets in Resources */,
+				B3E523392BC1532D00DAD568 /* Localizable.strings in Resources */,
 				B3E523242BBEFA8A00DAD568 /* Assets.xcassets in Resources */,
+				B3E523422BC1586400DAD568 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +176,34 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B3E523372BC1532D00DAD568 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B3E523382BC1532D00DAD568 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		B3E523402BC1586400DAD568 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B3E523412BC1586400DAD568 /* es-419 */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		B3E523462BC165B300DAD568 /* Keys.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B3E523452BC165B300DAD568 /* en */,
+				B3E523482BC165BF00DAD568 /* es-419 */,
+			);
+			name = Keys.plist;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B3E523282BBEFA8A00DAD568 /* Debug */ = {

@@ -18,31 +18,31 @@ struct EditDestinationView: View {
     
     var body: some View {
         Form {
-            TextField("Name", text: $destination.name)
-            TextField("Details", text: $destination.details, axis: .vertical)
-            DatePicker("Date", selection: $destination.date)
+            TextField(NSLocalizedString("EDV.TextField01", comment: "Placeholder"), text: $destination.name)
+            TextField(NSLocalizedString("EDV.TextField02", comment: "Placeholder"), text: $destination.details, axis: .vertical)
+            DatePicker(NSLocalizedString("EDV.TextField03", comment: "Placeholder"), selection: $destination.date)
             
-            Section("Piority") {
-                Picker("Priority", selection: $destination.priority) {
-                    Text("Meh").tag(1)
-                    Text("Maybe").tag(2)
-                    Text("Must").tag(3)
+            Section(NSLocalizedString("EDV.Section01", comment: "Title")) {
+                Picker(NSLocalizedString("EDV.Picker", comment: "Title"), selection: $destination.priority) {
+                    Text(NSLocalizedString("EDV.Text01", comment: "Text")).tag(1)
+                    Text(NSLocalizedString("EDV.Text02", comment: "Text")).tag(2)
+                    Text(NSLocalizedString("EDV.Text03", comment: "Text")).tag(3)
                 }
                 .pickerStyle(.segmented)
             }
             
-            Section("Sights") {
+            Section(NSLocalizedString("EDV.Section02", comment: "Title")) {
                 ForEach(destination.sights) { sight in
                     Text(sight.name)
                 }
                 .onDelete(perform: deleteSight)
                 HStack {
-                    TextField("Add a new sight in \(destination.name)", text: $newSightName)
-                    Button("Add", action: addSight)
+                    TextField("\(NSLocalizedString("EDV.TextField04", comment: "Title")) \(destination.name)", text: $newSightName)
+                    Button(NSLocalizedString("EDV.Button", comment: "Button text"), action: addSight)
                 }
             }
         }
-        .navigationTitle("Edit destination")
+        .navigationTitle(NSLocalizedString("EDV.navTitle", comment: "Navigation title"))
         .navigationBarTitleDisplayMode(.inline)
     }
     

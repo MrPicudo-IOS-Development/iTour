@@ -1,0 +1,32 @@
+/* 
+  Localizable.strings (Spanish)
+  iTour
+
+  Created by Jose Miguel Torres Chavez Nava on 06/04/24.
+  
+*/
+
+/* Strings from ContentView.swift */
+
+"CV.navTitle" = "Tour de viaje";
+"CV.Button" = "Añadir";
+"CV.Menu" = "Ordenar";
+"CV.PickerText" = "Ordenar";
+"CV.Text01" = "Nombre";
+"CV.Text02" = "Prioridad";
+"CV.Text03" = "Fecha";
+
+/* Strings from EditDestinationView.swift */
+
+"EDV.TextField01" = "Nombre";
+"EDV.TextField02" = "Detalles";
+"EDV.TextField03" = "Fecha";
+"EDV.Section01" = "Prioridad";
+"EDV.Picker" = "Prioridad";
+"EDV.Text01" = "Vemos...";
+"EDV.Text02" = "Me gustaria";
+"EDV.Text03" = "Ocupo";
+"EDV.Section02" = "Lugares a visitar";
+"EDV.TextField04" = "Agrega un sitio en";
+"EDV.Button" = "Añadir";
+"EDV.navTitle" = "Editar destino";

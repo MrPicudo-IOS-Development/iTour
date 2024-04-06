@@ -23,20 +23,30 @@ struct ContentView: View {
     @State private var searchText = ""
     
     var body: some View {
+        
+        /* *** Practice to use localized values from .plist files *** */
+        let path = Bundle.main.path(forResource: "Keys", ofType: "plist")
+        let dict = NSDictionary(contentsOfFile: path!)
+        let APIKeyMessage = dict?.object(forKey: "Key message") as? String ?? "Default Message"
+        
+        // Text(APIKeyMessage)
+        
+        /* *** End of practice. *** */
+
         NavigationStack(path: $path) {
             DestinationListingView(sort: sortOrder, searchString: searchText) // We send the sortOrder chosen by the user to build the View.
-            .navigationTitle("iTour")
+                .navigationTitle(NSLocalizedString("CV.navTitle", comment: "NS Title"))
             .searchable(text: $searchText)
             .navigationDestination(for: Destination.self, destination: EditDestinationView.init)
             .toolbar {
-                Button("Add", systemImage: "plus", action: addDestination)
-                Menu("Sort", systemImage: "arrow.up.arrow.down") {
-                    Picker("Sort", selection: $sortOrder) {
-                        Text("Name")
+                Button(NSLocalizedString("CV.Button", comment: "Button to add destination"), systemImage: "plus", action: addDestination)
+                Menu(NSLocalizedString("CV.Menu", comment: "Menu text"), systemImage: "arrow.up.arrow.down") {
+                    Picker(NSLocalizedString("CV.PickerText", comment: "Picker text"), selection: $sortOrder) {
+                        Text(NSLocalizedString("CV.Text01", comment: "Picker text tag 1"))
                             .tag(SortDescriptor(\Destination.name))
-                        Text("Priority")
+                        Text(NSLocalizedString("CV.Text02", comment: "Picker text tag 2"))
                             .tag(SortDescriptor(\Destination.priority, order: .reverse))
-                        Text("Date")
+                        Text(NSLocalizedString("CV.Text03", comment: "Picker text tag 3"))
                             .tag(SortDescriptor(\Destination.date))
                     }
                     .pickerStyle(.inline)
