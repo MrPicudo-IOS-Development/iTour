@@ -15,6 +15,7 @@
 		B3E523302BBF2B5D00DAD568 /* EditDestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E5232F2BBF2B5D00DAD568 /* EditDestinationView.swift */; };
 		B3E523322BC0656500DAD568 /* Query's practice in Resources */ = {isa = PBXBuildFile; fileRef = B3E523312BC0656500DAD568 /* Query's practice */; };
 		B3E523342BC0990500DAD568 /* DestinationListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E523332BC0990500DAD568 /* DestinationListingView.swift */; };
+		B3E523362BC0D42E00DAD568 /* Sight.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E523352BC0D42E00DAD568 /* Sight.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		B3E5232F2BBF2B5D00DAD568 /* EditDestinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDestinationView.swift; sourceTree = "<group>"; };
 		B3E523312BC0656500DAD568 /* Query's practice */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Query's practice"; sourceTree = "<group>"; };
 		B3E523332BC0990500DAD568 /* DestinationListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationListingView.swift; sourceTree = "<group>"; };
+		B3E523352BC0D42E00DAD568 /* Sight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sight.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 			children = (
 				B3E5231F2BBEFA8900DAD568 /* iTourApp.swift */,
 				B3E5232D2BBF1C0800DAD568 /* Destination.swift */,
+				B3E523352BC0D42E00DAD568 /* Sight.swift */,
 				B3E523332BC0990500DAD568 /* DestinationListingView.swift */,
 				B3E523212BBEFA8900DAD568 /* ContentView.swift */,
 				B3E5232F2BBF2B5D00DAD568 /* EditDestinationView.swift */,
@@ -153,6 +156,7 @@
 				B3E523222BBEFA8900DAD568 /* ContentView.swift in Sources */,
 				B3E523202BBEFA8900DAD568 /* iTourApp.swift in Sources */,
 				B3E5232E2BBF1C0800DAD568 /* Destination.swift in Sources */,
+				B3E523362BC0D42E00DAD568 /* Sight.swift in Sources */,
 				B3E523302BBF2B5D00DAD568 /* EditDestinationView.swift in Sources */,
 				B3E523342BC0990500DAD568 /* DestinationListingView.swift in Sources */,
 			);

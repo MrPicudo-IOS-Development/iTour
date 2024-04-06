@@ -10,6 +10,7 @@ import SwiftUI
 
 struct DestinationListingView: View {
     
+    // Variable neede to use "modelContext" with .add() and .delete() functions.
     @Environment(\.modelContext) var modelContext
     
     @Query var destinations: [Destination]
@@ -36,9 +37,17 @@ When you pass EditDestinationView.init as the closure, you're not instantiating 
         }
     }
     
-    init(sort: SortDescriptor<Destination>) {
+    // To build this View we need to pass a parameter of type "SortDescriptor" from the parent View.
+    init(sort: SortDescriptor<Destination>, searchString: String) {
         // In order to control the Query and NOT the array of destinations, we need to add "_" at the beggining.
-        _destinations = Query(sort: [sort])
+        _destinations = Query(filter: #Predicate {
+            if searchString.isEmpty {
+                return true // We send all the results if we search bar is empty
+            } else {
+                // "localizedStandardContains()" is the best method to do user-facing string searches, because is not case sensitive as the regular "contains()" method.
+                return $0.name.localizedStandardContains(searchString)
+            }
+        }, sort: [sort])
     }
     
     func deleteDestinations(_ indexSet: IndexSet) {
@@ -51,5 +60,5 @@ When you pass EditDestinationView.init as the closure, you're not instantiating 
 }
 
 #Preview {
-    DestinationListingView(sort: SortDescriptor(\Destination.name))
+    DestinationListingView(sort: SortDescriptor(\Destination.name), searchString: "")
 }

@@ -1,6 +1,6 @@
-/* We have Querys to sort results and to filter the results. The sorting part goes inside the @Query macro, and the filtering goes after, with predicates. We are going to practice a lot of both */
+/* We have Queries to sort results and to filter the results. The sorting part goes inside the @Query macro with a "sort:" identifier and a SortDescriptor object. The filtering goes inside as well, with a "filter:" identifier and a closure predicate. */
 
-/* Simple sorting querys: @Query(sort: \ClassModel.attribute, order: .reverse) var objectsByAttribute: [ClassModel] */
+/* Simple sorting queries: @Query(sort: \ClassModel.attribute, order: .reverse) var objectsByAttribute: [ClassModel] */
 
 // Query for consulting all the destinations ordered alfabetically by name.
 @Query(sort: \Destination.name) var destinationsByName: [Destination]
@@ -15,7 +15,7 @@
 @Query(sort: \Destination.details, order: .reverse) var destinationsByDetailsR: [Destination]
 
 
-/* Multiple sorting querys: @Query(sort: [SortDescriptor(\CM.attribute1), SortDescriptor(\CM.attribute2, order: .reverse)]) var objectsByAttribute1Attribute2R: [CM] */
+/* Multiple sorting queries: @Query(sort: [SortDescriptor(\CM.attribute1), SortDescriptor(\CM.attribute2, order: .reverse)]) var objectsByAttribute1Attribute2R: [CM] */
 
 // Query to sort by priority descending then name ascending.
 @Query(sort: [SortDescriptor(\Destination.priority, order: .reverse), SortDescriptor(\Destination.name)]) var destinationsByPriorityRName: [Destination]
@@ -29,4 +29,36 @@
 // Query to sort destinations first by name alphabetically in reverse (Z to A) and then by priority in ascending order (lowest to highest).
 @Query(sort: [SortDescriptor(\Destination.name, order: .reverse), SortDescriptor(\Destination.priority)]) var destinationsByNameRPriority: [Destination]
 
+
+/* Queries with filters */
+
+// Query to find destinations with a specific priority (high = 3)
+@Query(filter: #Predicate<Destination> { destination in
+        destination.priority == 3
+}) var destinationsWithHighPriority: [Destination]
+
+// Query that doesn't show any destinations with a low priority:
+@Query(filter: #Predicate<Destination> { destination in
+        destination.priority >= 2
+})
+
+/* If we need to use some more data like the current date or something similar into our Predicate, we should write it inside the initializer of the subview where we are controlling the sorting and filtering by the user.
+
+For example, the next Query will not work as it is, in the variables area of the View:
+
+// Query that only shows destinations that are upcoming in our trip.
+let now = Date.now()
+@Query(filter: #Predicate<Destination> { destination in
+        destination.date > now
+})
+
+// Instead, we need to work in the initializer bellow the body.
+init(sort: SortDescriptor<Destination>) {
+        // This is not accessible from the variables area (upside the body)
+        let now = Date.now
+        // Now we can use it inside the closure of the Predicate.
+        _destinations = Query(filter: #Predicate {
+        $0.date > now
+        }, sort: [sort])
+}
 

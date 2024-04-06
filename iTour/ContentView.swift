@@ -13,18 +13,20 @@ struct ContentView: View {
     
     @Environment(\.modelContext) var modelContext
     
-    @Query(sort: [SortDescriptor(\Destination.name, order: .reverse), SortDescriptor(\Destination.priority)]) var destinationsByNameRPriority: [Destination]
-    
     // Variable that controls the path of the NavigationStack
     @State private var path = [Destination]() // It's an empty array at the beginning.
     
     // Variable que almacena el orden elegido por el usuario, que contiene un valor sensato por default.
     @State private var sortOrder = SortDescriptor(\Destination.name)
     
+    // Variable that controls the user input in the search bar.
+    @State private var searchText = ""
+    
     var body: some View {
         NavigationStack(path: $path) {
-            DestinationListingView(sort: sortOrder) // We send the sortOrder chosen by the user to build the View.
+            DestinationListingView(sort: sortOrder, searchString: searchText) // We send the sortOrder chosen by the user to build the View.
             .navigationTitle("iTour")
+            .searchable(text: $searchText)
             .navigationDestination(for: Destination.self, destination: EditDestinationView.init)
             .toolbar {
                 Button("Add", systemImage: "plus", action: addDestination)
@@ -41,7 +43,6 @@ struct ContentView: View {
                 }
             }
         }
-        
     }
     
     func addDestination() {
