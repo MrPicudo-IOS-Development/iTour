@@ -18,31 +18,31 @@ struct EditDestinationView: View {
     
     var body: some View {
         Form {
-            TextField(NSLocalizedString("EDV.TextField01", comment: "Placeholder"), text: $destination.name)
-            TextField(NSLocalizedString("EDV.TextField02", comment: "Placeholder"), text: $destination.details, axis: .vertical)
-            DatePicker(NSLocalizedString("EDV.TextField03", comment: "Placeholder"), selection: $destination.date)
+            TextField(NSLocalizedString("EDV.TextField01", comment: "Name"), text: $destination.name)
+            TextField(NSLocalizedString("EDV.TextField02", comment: "Details"), text: $destination.details, axis: .vertical)
+            DatePicker(NSLocalizedString("EDV.TextField03", comment: "Date"), selection: $destination.date)
             
-            Section(NSLocalizedString("EDV.Section01", comment: "Title")) {
-                Picker(NSLocalizedString("EDV.Picker", comment: "Title"), selection: $destination.priority) {
-                    Text(NSLocalizedString("EDV.Text01", comment: "Text")).tag(1)
-                    Text(NSLocalizedString("EDV.Text02", comment: "Text")).tag(2)
-                    Text(NSLocalizedString("EDV.Text03", comment: "Text")).tag(3)
+            Section(NSLocalizedString("EDV.Section01", comment: "Priority")) {
+                Picker(NSLocalizedString("EDV.Picker", comment: "Priority"), selection: $destination.priority) {
+                    Text(NSLocalizedString("EDV.Text01", comment: "Meh")).tag(1)
+                    Text(NSLocalizedString("EDV.Text02", comment: "Maybe")).tag(2)
+                    Text(NSLocalizedString("EDV.Text03", comment: "Must")).tag(3)
                 }
                 .pickerStyle(.segmented)
             }
             
-            Section(NSLocalizedString("EDV.Section02", comment: "Title")) {
+            Section(NSLocalizedString("EDV.Section02", comment: "Sights")) {
                 ForEach(destination.sights) { sight in
                     Text(sight.name)
                 }
                 .onDelete(perform: deleteSight)
                 HStack {
-                    TextField("\(NSLocalizedString("EDV.TextField04", comment: "Title")) \(destination.name)", text: $newSightName)
-                    Button(NSLocalizedString("EDV.Button", comment: "Button text"), action: addSight)
+                    TextField("\(NSLocalizedString("EDV.TextField04", comment: "Add a new sight in")) \(destination.name)", text: $newSightName)
+                    Button(NSLocalizedString("EDV.Button", comment: "Add"), action: addSight)
                 }
             }
         }
-        .navigationTitle(NSLocalizedString("EDV.navTitle", comment: "Navigation title"))
+        .navigationTitle(NSLocalizedString("EDV.navTitle", comment: "Edit destination"))
         .navigationBarTitleDisplayMode(.inline)
     }
     

@@ -29,29 +29,30 @@ struct ContentView: View {
         let dict = NSDictionary(contentsOfFile: path!)
         let APIKeyMessage = dict?.object(forKey: "Key message") as? String ?? "Default Message"
         
-        // Text(APIKeyMessage)
-        
+        Text(APIKeyMessage)
         /* *** End of practice. *** */
-
+        
         NavigationStack(path: $path) {
             DestinationListingView(sort: sortOrder, searchString: searchText) // We send the sortOrder chosen by the user to build the View.
-                .navigationTitle(NSLocalizedString("CV.navTitle", comment: "NS Title"))
-            .searchable(text: $searchText)
-            .navigationDestination(for: Destination.self, destination: EditDestinationView.init)
-            .toolbar {
-                Button(NSLocalizedString("CV.Button", comment: "Button to add destination"), systemImage: "plus", action: addDestination)
-                Menu(NSLocalizedString("CV.Menu", comment: "Menu text"), systemImage: "arrow.up.arrow.down") {
-                    Picker(NSLocalizedString("CV.PickerText", comment: "Picker text"), selection: $sortOrder) {
-                        Text(NSLocalizedString("CV.Text01", comment: "Picker text tag 1"))
-                            .tag(SortDescriptor(\Destination.name))
-                        Text(NSLocalizedString("CV.Text02", comment: "Picker text tag 2"))
-                            .tag(SortDescriptor(\Destination.priority, order: .reverse))
-                        Text(NSLocalizedString("CV.Text03", comment: "Picker text tag 3"))
-                            .tag(SortDescriptor(\Destination.date))
+                .navigationTitle(NSLocalizedString("CV.navTitle", comment: "iTour"))
+                .searchable(text: $searchText)
+                .navigationDestination(for: Destination.self, destination: EditDestinationView.init)
+                .toolbar {
+                    Button("Add samples", action: addSamples)
+                    
+                    Button(NSLocalizedString("CV.Button", comment: "Add"), systemImage: "plus", action: addDestination)
+                    Menu(NSLocalizedString("CV.Menu", comment: "Sort"), systemImage: "arrow.up.arrow.down") {
+                        Picker(NSLocalizedString("CV.PickerText", comment: "Sort"), selection: $sortOrder) {
+                            Text(NSLocalizedString("CV.Text01", comment: "Name"))
+                                .tag(SortDescriptor(\Destination.name))
+                            Text(NSLocalizedString("CV.Text02", comment: "Priority"))
+                                .tag(SortDescriptor(\Destination.priority, order: .reverse))
+                            Text(NSLocalizedString("CV.Text03", comment: "Date"))
+                                .tag(SortDescriptor(\Destination.date))
+                        }
+                        .pickerStyle(.inline)
                     }
-                    .pickerStyle(.inline)
                 }
-            }
         }
     }
     
@@ -62,28 +63,19 @@ struct ContentView: View {
         // Now we trigger the editing view for this object right away.
         path = [destination]
     }
+    
+    func addSamples() {
+        // We created the Destination objects
+        let rome = Destination(name: "Rome")
+        let florence = Destination(name: "Florence")
+        let naples = Destination(name: "Naples")
+        // But we have to add them to the store
+        modelContext.insert(rome)
+        modelContext.insert(florence)
+        modelContext.insert(naples)
+    }
 }
 
 #Preview {
     ContentView()
 }
-
-
-/* Código de referencia:
- 
- /* En el toolbar:
-    // Button("Add samples", action: addSamples) */
- 
- // Función temporal para mostrar ejemplos en nuestra app.
- func addSamples() {
-     // We created the Destination objects
-     let rome = Destination(name: "Rome")
-     let florence = Destination(name: "Florence")
-     let naples = Destination(name: "Naples")
-     // But we have to add them to the store
-     modelContext.insert(rome)
-     modelContext.insert(florence)
-     modelContext.insert(naples)
- }
- 
- */

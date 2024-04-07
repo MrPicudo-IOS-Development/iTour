@@ -19,6 +19,7 @@
 		B3E523392BC1532D00DAD568 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3E523372BC1532D00DAD568 /* Localizable.strings */; };
 		B3E523422BC1586400DAD568 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3E523402BC1586400DAD568 /* Localizable.strings */; };
 		B3E523472BC165B300DAD568 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = B3E523462BC165B300DAD568 /* Keys.plist */; };
+		B3E523522BC1B76400DAD568 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E523512BC1B76400DAD568 /* SwiftUIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		B3E523412BC1586400DAD568 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B3E523452BC165B300DAD568 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Keys.plist; sourceTree = "<group>"; };
 		B3E523482BC165BF00DAD568 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "es-419"; path = "es-419.lproj/Keys.plist"; sourceTree = "<group>"; };
+		B3E523512BC1B76400DAD568 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				B3E523462BC165B300DAD568 /* Keys.plist */,
 				B3E523232BBEFA8A00DAD568 /* Assets.xcassets */,
 				B3E523252BBEFA8A00DAD568 /* Preview Content */,
+				B3E523512BC1B76400DAD568 /* SwiftUIView.swift */,
 			);
 			path = iTour;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3E523222BBEFA8900DAD568 /* ContentView.swift in Sources */,
+				B3E523522BC1B76400DAD568 /* SwiftUIView.swift in Sources */,
 				B3E523202BBEFA8900DAD568 /* iTourApp.swift in Sources */,
 				B3E5232E2BBF1C0800DAD568 /* Destination.swift in Sources */,
 				B3E523362BC0D42E00DAD568 /* Sight.swift in Sources */,
